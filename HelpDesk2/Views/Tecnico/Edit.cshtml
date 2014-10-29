@@ -1,0 +1,35 @@
+﻿@model HelpDesk2.Models.Tecnico
+
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.TituloPanel = "Tecnico";
+}
+
+@using (Html.BeginForm("Edit", "Tecnico", FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend></legend>
+        <div>
+            <div class="form-group col-lg-12 col-md-12">
+                @Html.LabelFor(model => model.Nome, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Nome, "", new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.Nome)</p>
+            </div>
+
+            <div class="form-group col-lg-12 col-md-12">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

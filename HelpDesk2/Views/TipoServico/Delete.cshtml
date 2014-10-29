@@ -1,0 +1,32 @@
+﻿@model HelpDesk2.Models.TipoServico
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.TituloPanel = "Tipo Serviço";
+}
+
+<h3>Você deseja realmente excluir?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group col-lg-12 col-md-12">
+            <input type="submit" value="Excluir" class="btn btn-primary" />
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Voltar", "Index")
+    </div>
+</div>

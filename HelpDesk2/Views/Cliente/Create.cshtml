@@ -1,0 +1,65 @@
+﻿@model HelpDesk2.Models.Cliente
+
+@{
+    ViewBag.Title = "Create";
+    ViewBag.TituloPanel = "Clientes";
+}
+
+@using (Html.BeginForm("Create", "Cliente", FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true)
+    <fieldset class="col-lg-12 col-md-12">
+        <legend>Novo Cliente</legend>
+        <div class="row">
+            <div class="form-group col-lg-12 col-md-12">
+                @Html.LabelFor(model => model.Nome, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Nome, "", new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.Nome)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-6 col-md-6">
+                @Html.LabelFor(model => model.Endereco, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Endereco, "", new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.Endereco)</p>
+            </div>
+            <div class="form-group col-lg-6 col-md-6">
+                @Html.LabelFor(model => model.Bairro, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Bairro, "", new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.Bairro)</p>
+            </div>
+         </div>
+        <div class="row">
+            <div class="form-group col-lg-6 col-md-6">
+                @Html.LabelFor(model => model.Cidade, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Cidade, "", new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.Cidade)</p>
+            </div>
+            <div class="form-group col-lg-6 col-md-6">
+                @Html.LabelFor(model => model.Uf, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Uf, "", new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.Uf)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-12 col-md-12">
+                @Html.LabelFor(model => model.Telefone, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Telefone, "", new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.Telefone)</p>
+            </div>
+            <div class="form-group col-lg-12 col-md-12">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

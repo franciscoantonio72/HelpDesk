@@ -1,0 +1,71 @@
+﻿@model HelpDesk2.Models.Os
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.TituloPanel = "Ordem de Serviço";
+}
+
+<h3>Você deseja realmente excluir?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tecnico.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tecnico.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prioridades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prioridades)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group col-lg-12 col-md-12">
+            <input type="submit" value="Excluir" class="btn btn-primary" />
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Voltar", "Index")
+    </div>
+</div>

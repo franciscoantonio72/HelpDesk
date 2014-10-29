@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="pt-br">
+<head>
+    <title>Help Desk</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Admin")
+    <link href="~/Content/menu.css" rel="stylesheet" />
+    <style type="text/css">
+        .panel-info > .panel-heading, .panel-footer {
+            background-color: #e3ecfe;
+        }
+            .panel-info > .panel-heading > h4 {
+                padding: 2px 3px;
+                margin: 0;
+            }
+    </style>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("estilos", required: false)
+
+    @*@Scripts.Render("~/bundles/portfolio")*@
+</head>
+<body>
+    <div class="content container">
+        <div class="row-fluid">
+            <div id='header' class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div id='global_links'>
+                    @*@Html.Partial("~/Views/Shared/_LoginPartial.cshtml")*@
+                </div>
+                <div id='subheader'>
+                    @*<a href=@Url.Action("Index","Dashboard")><img alt="Logo" src="@Url.Content("~/images/logo-write.png")" /></a>*@
+                </div>
+            </div>
+        </div>        
+        <div class="row-fluid" style="margin-top: 5px;">
+            <div class="col-md-1 col-lg-1 col-sm-1">
+                @if (Request.IsAuthenticated)
+                {  @*@Html.Partial("~/Views/Shared/_MenuPartial.cshtml")*@ }
+                </div>                                                         
+                <div class="col-md-10 col-lg-10 col-sm-10">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h4>@ViewBag.Title</h4>
+                        </div>
+                        <div class="panel-body">
+                            @RenderBody()
+                        </div>
+                        <div class="panel-footer">
+                            <div style="text-align: center; font-size: 0.9em;">
+                                Help Desk é um serviço da FA Informática</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div> 
+    </div>
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/mascaras")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
