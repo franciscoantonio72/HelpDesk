@@ -14,10 +14,15 @@
             <div class="panel-body">
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Usuário ou E-mail" })
-                @Html.ValidationMessageFor(m => m.UserName)
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Senha" })
-                @Html.ValidationMessageFor(m => m.Password)
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Usuário ou E-mail" })
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Senha" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
                 <div class="checkbox">
                     @Html.CheckBoxFor(m => m.RememberMe)
                     @Html.LabelFor(m => m.RememberMe)

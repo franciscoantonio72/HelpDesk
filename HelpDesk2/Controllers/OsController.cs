@@ -10,15 +10,26 @@ using HelpDesk2.Models;
 
 namespace HelpDesk2.Controllers
 {
-    public class OsController : Controller
+    public class OsController : ApplicationController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: /Os/
         public ActionResult Index()
         {
-            var os = db.Os.Include(o => o.Cliente).Include(o => o.Status).Include(o => o.Tecnico);
-            return View(os.ToList());
+            //var os = db.Os.Include(o => o.Cliente).Include(o => o.Status).Include(o => o.Tecnico);
+
+            IEnumerable<Os> listaOs;
+            if (UsuarioSessao().Niveis == 0)
+            {
+                listaOs = db.Os.ToList();    
+            }
+            else
+            {
+                listaOs = db.Os.ToList().Where(dado => dado.UserId == UsuarioSessao().Id);
+            }
+            
+            return View(listaOs.ToList());
         }
 
         // GET: /Os/Details/5
@@ -42,6 +53,8 @@ namespace HelpDesk2.Controllers
             ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nome");
             ViewBag.StatusId = new SelectList(db.Status, "Id", "Descricao");
             ViewBag.TecnicoId = new SelectList(db.Tecnicoes, "Id", "Nome");
+            var usuarios = db.Users.ToList();
+            ViewBag.UsersId = new SelectList(usuarios, "Id", "UserName");
             return View();
         }
 
@@ -50,18 +63,29 @@ namespace HelpDesk2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Descricao,ClienteId,TecnicoId,Data,Prioridades,StatusId")] Os os)
+        public ActionResult Create([Bind(Include="Id,Descricao,ClienteId,Data,Prioridades,StatusId,UserId,MsgNota")] Os os)
         {
             if (ModelState.IsValid)
             {
+                os.Usuario = UsuarioSessao().UserName;
                 db.Os.Add(os);
                 db.SaveChanges();
+
+                Nota lNota = new Nota();
+                lNota.Descricao = os.MsgNota;
+                lNota.Operador = UsuarioSessao().UserName;
+                lNota.OsId = os.Id;
+                db.Nota.Add(lNota);
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
             ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nome", os.ClienteId);
             ViewBag.StatusId = new SelectList(db.Status, "Id", "Descricao", os.StatusId);
-            ViewBag.TecnicoId = new SelectList(db.Tecnicoes, "Id", "Nome", os.TecnicoId);
+            var usuarios = db.Users.ToList();
+            ViewBag.UsersId = new SelectList(usuarios, "Id", "UserName");
+
             return View(os);
         }
 
@@ -77,9 +101,13 @@ namespace HelpDesk2.Controllers
             {
                 return HttpNotFound();
             }
+            os.MsgNota = "";
             ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nome", os.ClienteId);
             ViewBag.StatusId = new SelectList(db.Status, "Id", "Descricao", os.StatusId);
-            ViewBag.TecnicoId = new SelectList(db.Tecnicoes, "Id", "Nome", os.TecnicoId);
+            var usuarios = db.Users.ToList();
+            ViewBag.UsersId = new SelectList(usuarios, "Id", "UserName");
+            var lista = db.Nota.Where(l => l.OsId == os.Id).ToList();
+            os.Nota = lista;
             return View(os);
         }
 
@@ -88,17 +116,28 @@ namespace HelpDesk2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Descricao,ClienteId,TecnicoId,Data,Prioridades,StatusId")] Os os)
+        public ActionResult Edit([Bind(Include = "Id,Descricao,ClienteId,Data,Prioridades,StatusId,UserId,MsgNota")] Os os)
         {
             if (ModelState.IsValid)
             {
+                os.Usuario = db.Users.Find(os.UserId).UserName.ToString();
                 db.Entry(os).State = EntityState.Modified;
                 db.SaveChanges();
+
+                Nota lNota = new Nota();
+                lNota.Descricao = os.MsgNota;
+                lNota.Operador = UsuarioSessao().UserName;
+                lNota.OsId = os.Id;
+                db.Nota.Add(lNota);
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nome", os.ClienteId);
             ViewBag.StatusId = new SelectList(db.Status, "Id", "Descricao", os.StatusId);
-            ViewBag.TecnicoId = new SelectList(db.Tecnicoes, "Id", "Nome", os.TecnicoId);
+            var usuarios = db.Users.ToList();
+            ViewBag.UsersId = new SelectList(usuarios, "Id", "UserName");
+
             return View(os);
         }
 

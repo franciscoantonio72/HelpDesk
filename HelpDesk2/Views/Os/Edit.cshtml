@@ -12,43 +12,70 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend></legend>
-        <div>
+        <div class="row">
             <div class="form-group col-lg-12 col-md-12">
                 @Html.LabelFor(model => model.Descricao, new { @class = "form-label" })
                 @Html.TextBoxFor(model => model.Descricao, "", new { @class = "form-control" })
                 <p>@Html.ValidationMessageFor(model => model.Descricao)</p>
             </div>
-
+        </div>
+        <div class="row">
             <div class="form-group col-lg-6 col-md-6">
-                @Html.LabelFor(model => model.ClienteId, "ClienteId", new { @class = "form-label" })
+                @Html.LabelFor(model => model.ClienteId, "Cliente", new { @class = "form-label" })
                 @Html.DropDownListFor(model => model.ClienteId, (IEnumerable<SelectListItem>)ViewBag.ClienteId, new { @class = "form-control" })
                 <p>@Html.ValidationMessageFor(model => model.ClienteId)</p>
             </div>
 
             <div class="form-group col-lg-6 col-md-6">
-                @Html.LabelFor(model => model.TecnicoId, "TecnicoId", new { @class = "form-label" })
-                @Html.DropDownListFor(model => model.TecnicoId, (IEnumerable<SelectListItem>)ViewBag.TecnicoId, new { @class = "form-control" })
-                <p>@Html.ValidationMessageFor(model => model.TecnicoId)</p>
+                @Html.LabelFor(model => model.Prioridades, new { @class = "form-label" })
+                @Html.EnumDropDownListFor(model => model.Prioridades, new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.Prioridades)</p>
             </div>
-
-            <div class="form-group col-lg-12 col-md-12">
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-6 col-md-6">
                 @Html.LabelFor(model => model.Data, new { @class = "form-label" })
                 @Html.EditorFor(model => model.Data, new { @class = "form-control" })
                 <p>@Html.ValidationMessageFor(model => model.Data)</p>
             </div>
 
             <div class="form-group col-lg-6 col-md-6">
-                @Html.LabelFor(model => model.Prioridades, new { @class = "form-label" })
-                @Html.TextBoxFor(model => model.Prioridades, "", new { @class = "form-control" })
-                <p>@Html.ValidationMessageFor(model => model.Prioridades)</p>
+                @Html.LabelFor(model => model.UserId, "Usuario", new { @class = "form-label" })
+                @Html.DropDownListFor(model => model.UserId, (IEnumerable<SelectListItem>)ViewBag.UsersId, new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.UserId)</p>
             </div>
-
-            <div class="form-group col-lg-6 col-md-6">
-                @Html.LabelFor(model => model.StatusId, "StatusId", new { @class = "form-label" })
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-12 col-md-12">
+                @Html.LabelFor(model => model.StatusId, "Status", new { @class = "form-label" })
                 @Html.DropDownListFor(model => model.StatusId, (IEnumerable<SelectListItem>)ViewBag.StatusId, new { @class = "form-control" })
                 <p>@Html.ValidationMessageFor(model => model.StatusId)</p>
             </div>
-
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-12 col-md-12">
+                @Html.LabelFor(model => model.MsgNota, "Nota", new { @class = "form-label" })
+                @Html.TextAreaFor(model => model.MsgNota, 5, 100, new { @class = "form-control textareanota" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-12 col-md-12">
+                <table>
+                    <tr>
+                        <td>Operador</td>
+                        <td>Descrição</td>
+                    </tr>
+                    @foreach (var item in Model.Nota)
+                    {
+                        <tr>
+                            <td width="110">@item.Operador</td>
+                            <td>@item.Descricao</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        <div class="row">
             <div class="form-group col-lg-12 col-md-12">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>

@@ -23,9 +23,5 @@ namespace HelpDesk2.Controllers
         {
             return Session["Usuario"] != null;
         }        // GET: /Application/
-        public ActionResult Index()
-        {
-            return View();
-        }
-	}
+  	}
 }

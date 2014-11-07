@@ -45,6 +45,14 @@ namespace HelpDesk2.Models
 
     public class RegisterViewModel
     {
+        public enum Nivel : int
+        {
+            [Display(Name = "Administrador")]
+            Administrador = 0,
+            [Display(Name = "Operador")]
+            Operador = 1
+        }
+
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
@@ -59,5 +67,7 @@ namespace HelpDesk2.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public virtual Nivel Niveis { get; set; }
     }
 }

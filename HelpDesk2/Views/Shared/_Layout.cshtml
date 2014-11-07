@@ -42,9 +42,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
@@ -55,7 +52,6 @@
                         <li>@Html.ActionLink("Tipo Servico", "Index", "TipoServico")</li>
                         <li>@Html.ActionLink("Os", "Index", "Os")</li>
                         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

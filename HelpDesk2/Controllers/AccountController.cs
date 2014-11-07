@@ -50,6 +50,7 @@ namespace HelpDesk2.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
+                    ViewBag.Usuarios = user.Niveis;
                     SalvarUsuarioSessao(user);
                     return RedirectToLocal(returnUrl);
                 }
@@ -80,7 +81,7 @@ namespace HelpDesk2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new ApplicationUser() { UserName = model.UserName, Niveis = (ApplicationUser.Nivel)model.Niveis };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -292,7 +293,7 @@ namespace HelpDesk2.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //
@@ -374,7 +375,7 @@ namespace HelpDesk2.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Os");
             }
         }
 
