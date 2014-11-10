@@ -267,6 +267,7 @@
     <Content Include="Views\Os\Edit.cshtml" />
     <Content Include="Views\Os\Index.cshtml" />
     <Content Include="Views\Shared\_BaseAdmin.cshtml" />
+    <Content Include="Views\Os\Close.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

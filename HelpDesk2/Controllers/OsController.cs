@@ -141,6 +141,57 @@ namespace HelpDesk2.Controllers
             return View(os);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Close([Bind(Include = "Id,Descricao,ClienteId,Data,Prioridades,StatusId,UserId,MsgNota")] Os os)
+        {
+            if (ModelState.IsValid)
+            {
+                os.Usuario = db.Users.Find(os.UserId).UserName.ToString();
+                db.Entry(os).State = EntityState.Modified;
+                var status = db.Status.Find(2);
+                os.Status = status;
+                db.SaveChanges();
+
+                Nota lNota = new Nota();
+                lNota.Descricao = "Os Fechada" + "\r";
+                lNota.Descricao = lNota.Descricao + os.MsgNota;
+                lNota.Operador = UsuarioSessao().UserName;
+                lNota.OsId = os.Id;
+                db.Nota.Add(lNota);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nome", os.ClienteId);
+            ViewBag.StatusId = new SelectList(db.Status, "Id", "Descricao", os.StatusId);
+            var usuarios = db.Users.ToList();
+            ViewBag.UsersId = new SelectList(usuarios, "Id", "UserName");
+
+            return View(os);
+        }
+
+        public ActionResult Close(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Os os = db.Os.Find(id);
+            if (os == null)
+            {
+                return HttpNotFound();
+            }
+            os.MsgNota = "";
+            ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nome", os.ClienteId);
+            ViewBag.StatusId = new SelectList(db.Status, "Id", "Descricao", os.StatusId);
+            var usuarios = db.Users.ToList();
+            ViewBag.UsersId = new SelectList(usuarios, "Id", "UserName");
+            var lista = db.Nota.Where(l => l.OsId == os.Id).ToList();
+            os.Nota = lista;
+            return View(os);
+        }
+
         // GET: /Os/Delete/5
         public ActionResult Delete(int? id)
         {
