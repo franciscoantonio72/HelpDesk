@@ -1,0 +1,142 @@
+﻿@model IEnumerable<HelpDesk2.Models.Os>
+
+@{
+    ViewBag.Title = "Relatorio";
+}
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>Exemplo de Relatório em PDF</title>
+
+    <!-- css -->
+    <link href="http://rotativaw7.apphb.com/Content/estilos-relatorio.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="container">
+        <div id="cabecalho">
+            <div id="nome">
+                <h1>Relatório de Média de Tempo</h1>
+            </div>
+            <div id="unidade">
+                <h2>Help-Desk</h2>
+            </div>
+        </div>
+        <div id="corpo">
+            <div class="linha">
+                <p>
+                    Dispensado:<br />
+                    <span>10/10/2012</span>
+                </p>
+                <p>
+                    Cartão do SUS:<br />
+                    <span>123.1232.123.123</span>
+                </p>
+                <p>
+                    Usuario:<br />
+                    <span class="bold">João da Silva Gonçalves</span>
+                </p>
+            </div>
+            <div class="linha">
+                <p>
+                    Prescritor:<br />
+                    <span>Jonas São João</span>
+                </p>
+                <p>
+                    Nº Registro:<br />
+                    <span>12323132</span>
+                </p>
+                <p>
+                    Origem da Receita:<br />
+                    <span>10/10/012</span>
+                </p>
+            </div>
+            <div class="linha">
+                <p>Produtos Dispensados:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Descricao</th>
+                            <th>Data Abertura</th>
+                            <th>Hora Abertura</th>
+                            <th>Data Fechamento</th>
+                            <th>Hora Fechamento</th>
+                            <th>Tempo Médio</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descricao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Data)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoraAbertura)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DataFechamento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoraFechamento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoraFechamento)
+                                </td>
+                            </tr>
+                        }
+
+                        @*<tr class="odd">
+                            <td class="bold" width="45%">Anador</td>
+                            <td>Sim</td>
+                            <td class="fonte10">FRS</td>
+                            <td class="aling-right">10</td>
+                            <td class="aling-right" width="100px;">1,2345</td>
+                            <td class="aling-right" style="min-width: 100px">12,23</td>
+                        </tr>
+                        <tr class="odd">
+                            <td colspan="6" class="italico">Possologia: 1 dose, 3 vez por dia, durante 5 dias</td>
+                        </tr>
+
+                        <tr class="">
+                            <td class="bold" width="45%">Dipirona</td>
+                            <td>Sim</td>
+                            <td class="fonte10">FRS</td>
+                            <td class="aling-right">10</td>
+                            <td class="aling-right" width="100px;">1,2345</td>
+                            <td class="aling-right" style="min-width: 100px">12,23</td>
+                        </tr>
+                        <tr class="">
+                            <td colspan="6" class="italico">Possologia: 1 dose, 3 vez por dia, durante 5 dias</td>
+                        </tr>*@
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6" class="bold">Total</td>
+                            <td class="aling-right">R$ 12,23</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="linha">
+                <p>
+                    Observação:<br />
+                    <span>Paciente com fortes dores de cabeça</span>
+                </p>
+            </div>
+        </div>
+        <div id="rodape">
+            <p>Usuário: <span>Cleyton Ferrari</span> Emitido: <span>26/10/2012</span> CleytonFerrari.com</p>
+        </div>
+    </div>
+</body>
+</html>

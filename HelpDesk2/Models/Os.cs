@@ -29,6 +29,9 @@ namespace HelpDesk2.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date, ErrorMessage = "Informe uma data válida")]
         public DateTime Data { get; set; }
+        public DateTime? DataFechamento { get; set; }
+        public string HoraAbertura { get; set; }
+        public string HoraFechamento { get; set; }
         [Display(Name = "Prioridade")]
         public virtual Prioridade Prioridades { get; set; }
         public virtual Status Status { get; set; }

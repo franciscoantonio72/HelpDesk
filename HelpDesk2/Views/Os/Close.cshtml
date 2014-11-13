@@ -60,6 +60,12 @@
         </div>
         <div class="row">
             <div class="form-group col-lg-12 col-md-12">
+                @Html.HiddenFor(model => model.HoraAbertura, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-12 col-md-12">
                 <table id="tabela" class="table table-striped">
                     <thead>
                         <tr>

@@ -163,6 +163,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OsController.cs" />
+    <Compile Include="Controllers\RelatorioController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\SetorController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
@@ -268,6 +269,7 @@
     <Content Include="Views\Os\Index.cshtml" />
     <Content Include="Views\Shared\_BaseAdmin.cshtml" />
     <Content Include="Views\Os\Close.cshtml" />
+    <Content Include="Views\Relatorio\Relatorio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

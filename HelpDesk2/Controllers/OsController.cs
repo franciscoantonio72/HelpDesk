@@ -63,11 +63,12 @@ namespace HelpDesk2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Descricao,ClienteId,Data,Prioridades,StatusId,UserId,MsgNota")] Os os)
+        public ActionResult Create([Bind(Include="Id,Descricao,ClienteId,Data,Prioridades,StatusId,UserId,MsgNota,DataFechamento,HoraAbertura,HoraFechamento")] Os os)
         {
             if (ModelState.IsValid)
             {
-                os.Usuario = UsuarioSessao().UserName;
+                os.Usuario = db.Users.Find(os.UserId).UserName.ToString();
+                os.HoraAbertura = DateTime.Now.ToShortTimeString();
                 db.Os.Add(os);
                 db.SaveChanges();
 
@@ -116,7 +117,7 @@ namespace HelpDesk2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descricao,ClienteId,Data,Prioridades,StatusId,UserId,MsgNota")] Os os)
+        public ActionResult Edit([Bind(Include = "Id,Descricao,ClienteId,Data,Prioridades,StatusId,UserId,MsgNota,DataFechamento,HoraAbertura,HoraFechamento")] Os os)
         {
             if (ModelState.IsValid)
             {
@@ -143,14 +144,18 @@ namespace HelpDesk2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Close([Bind(Include = "Id,Descricao,ClienteId,Data,Prioridades,StatusId,UserId,MsgNota")] Os os)
+        public ActionResult Close([Bind(Include = "Id,Descricao,ClienteId,Data,Prioridades,StatusId,UserId,MsgNota,DataFechamento,HoraAbertura,HoraFechamento")] Os os)
+        //public ActionResult Close(Os os)
         {
             if (ModelState.IsValid)
             {
                 os.Usuario = db.Users.Find(os.UserId).UserName.ToString();
+                os.StatusId = 2;
+                os.DataFechamento = System.DateTime.Now;
+                os.HoraFechamento = System.DateTime.Now.ToString("t");
+                //string hora = db.Os.Find(os.Id).HoraAbertura.ToString();
+                //os.HoraAbertura = hora; 
                 db.Entry(os).State = EntityState.Modified;
-                var status = db.Status.Find(2);
-                os.Status = status;
                 db.SaveChanges();
 
                 Nota lNota = new Nota();
