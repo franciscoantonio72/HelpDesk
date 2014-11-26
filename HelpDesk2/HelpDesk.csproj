@@ -258,6 +258,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\DataTables-1.10.3\css\dataTables.responsive.scss" />
     <Content Include="Content\DataTables-1.10.3\css\dataTables.jqueryui.scss" />
+    <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
