@@ -1,0 +1,21 @@
+.rental-100-chars {
+    max-width: 500px;
+}
+
+/* ---------------------------------------------------------------------------
+    Bootstrap Tabs
+--------------------------------------------------------------------------- */
+
+.tab-content, .wf-tab-content {
+    background-color: ghostwhite;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    background-color: ghostwhite;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: ghostwhite;
+}
+
+

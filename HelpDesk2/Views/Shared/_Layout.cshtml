@@ -4,9 +4,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/menu.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    @*<link href="~/Content/menu.css" rel="stylesheet" />*@
+    <link href="~/Scripts/media/css/jquery.dataTables.css" rel="stylesheet" />"
+    <script src="~/Scripts/media/js/jquery.js"></script>
+    <script src="~/Scripts/media/js/jquery.dataTables.js"></script>
     <script>
+        $(document).ready(function () {
+            $('#tabela').dataTable({
+                "language": {
+                    "lengthMenu": "Exibindo _MENU_ Registros por página",
+                    "zeroRecords": "Não acho nada",
+                    "info": "Exibindo _PAGE_ de _PAGES_",
+                    "infoEmpty": "Não existe registros",
+                    "infoFiltered": "(Filtrado de _MAX_ Registros)",
+                    "search": "Pesquisa",
+                    "oPaginate": {
+                        "sFirst": "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext": "Seguinte",
+                        "sLast": "Último"
+                    }
+                }
+            });
+        });
         //$(document).ready(function () {
         //    var classeTd = "";
         //    $("#tabela td").each(function () {
@@ -51,7 +71,16 @@
                         <li>@Html.ActionLink("Tecnico", "Index", "Tecnico")</li>
                         <li>@Html.ActionLink("Tipo Servico", "Index", "TipoServico")</li>
                         <li>@Html.ActionLink("Os", "Index", "Os")</li>
-                        <li>@Html.ActionLink("Relatorio", "Relatorio", "Relatorio")</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Tempo Médio de Atendimento", "Relatorio", "Relatorio")</li>
+                                @*<li>@Html.ActionLink("Tempo Médio de Atendimento por Tipo Serviço", "", "Relatorio")</li>
+                                    <li>@Html.ActionLink("Tempo Médio de Atendimento por técnico", "", "Relatorio")</li>*@
+                                <li><a href="#">Tempo Médio de Atendimento por Tipo Serviço</a></li>
+                                <li><a href="#">Tempo Médio de Atendimento por técnico</a></li>
+                            </ul>
+                        </li>
                         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                     }
                 </ul>

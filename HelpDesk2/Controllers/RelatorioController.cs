@@ -20,8 +20,8 @@ namespace HelpDesk2.Controllers
 
         public ActionResult Relatorio()
         {
-            var os = db.Os.ToList();
+            var os = db.Os.Where(r => r.StatusId == 2).ToList();
             return View(os);
         }
-	}
+    }
 }

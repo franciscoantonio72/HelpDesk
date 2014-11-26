@@ -1,0 +1,9 @@
+﻿{
+	"sProcessing": "Processando...",
+	"oPaginate":{
+		"sFirst": "Primeiro",
+		"sPrevious": "Anterior",
+		"sNext": "Seguinte",
+		"sLast": "Último"
+	}
+}

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HelpDesk2.Models;
+using PagedList;
 
 namespace HelpDesk2.Controllers
 {
@@ -15,9 +16,16 @@ namespace HelpDesk2.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: /Os/
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             //var os = db.Os.Include(o => o.Cliente).Include(o => o.Status).Include(o => o.Tecnico);
+            if (Request.HttpMethod != "GET")
+            {
+                page = 1;
+            }
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
 
             IEnumerable<Os> listaOs;
             if (UsuarioSessao().Niveis == 0)
@@ -29,8 +37,31 @@ namespace HelpDesk2.Controllers
                 listaOs = db.Os.ToList().Where(dado => dado.UserId == UsuarioSessao().Id);
             }
             
-            return View(listaOs.ToList());
+            return View(listaOs.ToPagedList(pageNumber, pageSize));
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index(int? id)
+        //{
+        //    IEnumerable<Os> listaOs;
+        //    if (UsuarioSessao().Niveis == 0)
+        //    {
+        //        if (id == null)
+        //            listaOs = db.Os.ToList();
+        //        else
+        //            listaOs = db.Os.ToList().Where(dado => dado.Id == id);
+        //    }
+        //    else
+        //    {
+        //        if (id == null)
+        //            listaOs = db.Os.ToList().Where(dado => dado.UserId == UsuarioSessao().Id);
+        //        else
+        //            listaOs = db.Os.ToList().Where(dado => dado.UserId == UsuarioSessao().Id && dado.Id == id);
+        //    }
+
+        //    return View(listaOs.ToList());
+        //}
 
         // GET: /Os/Details/5
         public ActionResult Details(int? id)
@@ -44,7 +75,32 @@ namespace HelpDesk2.Controllers
             {
                 return HttpNotFound();
             }
+            var lista = db.Nota.Where(l => l.OsId == os.Id).ToList();
+            os.Nota = lista;
             return View(os);
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Pesquisa(int? id )
+        {
+            IEnumerable<Os> listaOs;
+            if (UsuarioSessao().Niveis == 0)
+            {
+                if (id == null)
+                    listaOs = db.Os.ToList();
+                else
+                    listaOs = db.Os.ToList().Where(dado => dado.Id == id);
+            }
+            else
+            {
+                if (id == null)
+                    listaOs = db.Os.ToList().Where(dado => dado.UserId == UsuarioSessao().Id);
+                else
+                    listaOs = db.Os.ToList().Where(dado => dado.UserId == UsuarioSessao().Id && dado.Id == id);
+            }
+
+            return View(listaOs.ToList());
         }
 
         // GET: /Os/Create
@@ -69,6 +125,7 @@ namespace HelpDesk2.Controllers
             {
                 os.Usuario = db.Users.Find(os.UserId).UserName.ToString();
                 os.HoraAbertura = DateTime.Now.ToShortTimeString();
+                os.Data = DateTime.Now;
                 db.Os.Add(os);
                 db.SaveChanges();
 

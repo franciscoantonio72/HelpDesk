@@ -39,5 +39,30 @@ namespace HelpDesk2.Models
         public virtual string MsgNota { get; set; }
         [NotMapped]
         public virtual IEnumerable<Nota> Nota { get; set; }
+        [NotMapped]
+        public virtual string Tempo
+        {
+            get
+            {
+                return CalcularTempo();
+            }
+        }
+
+        private string CalcularTempo()
+        {
+            if (this.Status.Id == 2)
+            {
+                DateTime fim = (DateTime)this.DataFechamento;
+                DateTime inicio = this.Data;
+                TimeSpan diferenca = fim.Subtract(inicio);
+
+                return diferenca.Days + " Dias e " + diferenca.Hours + ":" + diferenca.Minutes + ":" + diferenca.Seconds;
+
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }

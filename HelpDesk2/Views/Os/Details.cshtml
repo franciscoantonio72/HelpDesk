@@ -2,12 +2,12 @@
 
 @{
     ViewBag.Title = "Details";
+    ViewBag.TituloPanel = "Ordem de Serviço";
 }
 
-<h2>Details</h2>
+<h2>Detalhe</h2>
 
 <div>
-    <h4>Os</h4>
 	<hr />
     <dl class="dl-horizontal">
         <dt>
@@ -59,8 +59,28 @@
         </dd>
 
     </dl>
+    <div class="row">
+        <div class="form-group col-lg-12 col-md-12">
+            <table id="tabela" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Operador</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Nota)
+                    {
+                        <tr>
+                            <td width="110">@item.Operador</td>
+                            <td>@item.Descricao</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </p>
