@@ -1,0 +1,158 @@
+/*
+wf.site.css
+Version: 1.0.0
+Date: 2014/09/09
+*/
+
+/* ---------------------------------------------------------------------------
+    Input width
+    Set width on the form input elements since they're 100% wide by default.
+--------------------------------------------------------------------------- */
+
+input, select, textarea .wf-input-40chars {
+    max-width: 340px;
+}
+
+input, select, textarea .wf-input-50chars {
+    max-width: 412px;
+}
+
+/* ---------------------------------------------------------------------------
+    Work together with the Boostrap classes
+--------------------------------------------------------------------------- */
+
+.wf-modal-body {
+    padding-bottom: 0px;
+}
+
+.wf-modal-footer {
+   padding-top: 5px; 
+}
+
+.wf-modal-footer > .btn {
+   margin-top: 10px;
+}
+
+.wf-modal-open-addpadding {
+    /*does nothing, used to fix bootstrap modal padding-right*/
+}
+
+/* ---------------------------------------------------------------------------
+    Inline align
+--------------------------------------------------------------------------- */
+ 
+.wf-formcontrols-inline-marginbottom > .form-control {
+    display: inline-block; 
+    vertical-align: top;
+    margin-bottom: 10px;
+}
+
+.wf-formcontrols-inline-marginbottom > .btn {
+    margin-bottom: 10px;
+}
+
+.wf-formcontrols-inline-margintop > .form-control {
+    display: inline-block; 
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+.wf-formcontrols-inline-margintop > .btn {
+    margin-top: 10px;
+}
+
+/* ---------------------------------------------------------------------------
+    Buttons align
+--------------------------------------------------------------------------- */
+
+.wf-buttons-margintop > .btn {
+    margin-top: 10px;
+}
+
+.wf-buttons-margintopright > .btn {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.wf-buttons-marginbottom > .btn {
+    margin-bottom: 10px;
+}
+
+.wf-buttons-marginbottomright > .btn {
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+/* ---------------------------------------------------------------------------
+    Bootstrap Tabs
+--------------------------------------------------------------------------- */
+
+.tab-content, .wf-tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0px 0px 4px 4px;
+    padding: 20px 20px 8px 20px;
+    margin-bottom: 20px;
+}
+
+/* margin-bottom: 0; on .nav-tabs removes the gap in between the pills and content. */
+/*
+.nav-tabs {
+    margin-bottom: 0;
+}
+*/
+
+/* ---------------------------------------------------------------------------
+    Bindings
+--------------------------------------------------------------------------- */
+
+/* 
+    Use for dates. 
+    - Adds a boostrap calendar to the input "wf_bindEvents.bindBootstrapDatepicker".
+    - Binds the "wf_bindEvents.bindAcceptOnlyDateEvent" event. 
+    - Sets the default width for a date field.
+*/
+.wf-calendar {
+    max-width: 105px;
+}
+
+/* ---------------------------------------------------------------------------
+    DataTable
+--------------------------------------------------------------------------- */
+
+/* 
+    Sets the colour of the "wf_dataTable" selected rows.
+*/
+.wf-datatable-row-selected td {
+     background-color: rgb(144, 174, 180);
+}
+
+/* ---------------------------------------------------------------------------
+    Classes to centralize content on the screen.
+    Used to centralize the loading animation. 
+    Used for the wf.dialog.js, method showLoadingDialog().
+--------------------------------------------------------------------------- */
+
+.wf-loading-animation {
+	width: 60px;
+}
+
+/* Classes to centralize content on the screen. */
+.wf-center-screen {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+    .wf-center-screen .wf-middle-vertical {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+        .wf-center-screen .wf-middle-vertical .wf-center-align {
+            text-align: center;
+            margin: auto;
+        }
+
+/* ------------------------------------------------------------------------- */
