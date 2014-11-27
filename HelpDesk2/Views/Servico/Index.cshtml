@@ -11,10 +11,10 @@
 <table class="table table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TipoServico.Descricao)
+            Serviço
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nome)
+            Tipo de Serviço
         </th>
         <th></th>
     </tr>
@@ -23,10 +23,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoServico.Descricao)
+                @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Nome)
+                @Html.DisplayFor(modelItem => item.TipoServico.Descricao)
             </td>
             <td>
                 @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-info glyphicon glyphicon-pencil" })

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<HelpDesk2.Models.Relatorio.AtendimentoTecnico>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Relatorio";
+}
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>Help-Desk - Relatorio de Tempo Médio de Atendimento por Técnico</title>
+
+    <!-- css -->
+    <link href="http://rotativaw7.apphb.com/Content/estilos-relatorio.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="container">
+        <div id="cabecalho">
+            <div id="nome">
+                <h1>Quantidade de Os por Técnico</h1>
+            </div>
+            <div id="unidade">
+                <h2>Help-Desk</h2>
+            </div>
+        </div>
+        <div id="corpo">
+            <div class="linha">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Quantidade</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomeUsuario)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contador)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div id="rodape">
+            <p>Usuário: <span>@User.Identity.GetUserName()</span> Emitido: <span>@DateTime.Now</span></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -181,6 +181,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Nota.cs" />
     <Compile Include="Models\Os.cs" />
+    <Compile Include="Models\Relatorio\AtendimentoTecnico.cs" />
     <Compile Include="Models\Servico.cs" />
     <Compile Include="Models\Setor.cs" />
     <Compile Include="Models\Status.cs" />
@@ -352,6 +353,8 @@
     <Content Include="Views\Relatorio\Relatorio.cshtml" />
     <Content Include="Scripts\media\images\Sorting icons.psd" />
     <Content Include="Scripts\media\images\Thumbs.db" />
+    <Content Include="Views\Relatorio\RelatorioTecnico.cshtml" />
+    <Content Include="Views\Relatorio\RelatorioAtendimentoPendente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

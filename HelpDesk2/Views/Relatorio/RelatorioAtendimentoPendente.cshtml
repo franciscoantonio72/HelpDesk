@@ -17,7 +17,7 @@
     <div id="container">
         <div id="cabecalho">
             <div id="nome">
-                <h1>Relatório de Média de Tempo</h1>
+                <h1>Os Pendente por Clientes</h1>
             </div>
             <div id="unidade">
                 <h2>Help-Desk</h2>
@@ -28,13 +28,11 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>Os</th>
+                            <th>Nome Cliente</th>
                             <th>Descricao</th>
                             <th>Data Abertura</th>
                             <th>Hora Abertura</th>
-                            <th>Data Fechamento</th>
-                            <th>Hora Fechamento</th>
-                            <th>Tempo Médio</th>
                         </tr>
                     </thead>
 
@@ -44,6 +42,9 @@
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cliente.Nome)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Descricao)

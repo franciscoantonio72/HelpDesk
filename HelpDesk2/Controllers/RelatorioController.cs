@@ -1,4 +1,5 @@
 ﻿using HelpDesk2.Models;
+using HelpDesk2.Models.Relatorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,22 @@ namespace HelpDesk2.Controllers
         public ActionResult Relatorio()
         {
             var os = db.Os.Where(r => r.StatusId == 2).ToList();
+            return View(os);
+        }
+
+        public ActionResult RelatorioTecnico()
+        {
+            var listaOs = from os in db.Os
+                          where os.StatusId == 2
+                          group os by os.Usuario into g
+                          select new AtendimentoTecnico { NomeUsuario = g.Key, Contador = g.Count(), ListaOs = g.ToList() };
+
+            return View(listaOs);
+        }
+
+        public ActionResult RelatorioAtendimentoPendente()
+        {
+            var os = db.Os.Where(r => r.StatusId != 2).ToList();
             return View(os);
         }
     }

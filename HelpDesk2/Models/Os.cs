@@ -26,8 +26,8 @@ namespace HelpDesk2.Models
         public virtual Cliente Cliente { get; set; }
         [Required(ErrorMessage = "Informe um Cliente")]
         public int ClienteId { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [DataType(DataType.Date, ErrorMessage = "Informe uma data válida")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        //[DataType(DataType.Date, ErrorMessage = "Informe uma data válida")]
         public DateTime Data { get; set; }
         public DateTime? DataFechamento { get; set; }
         public string HoraAbertura { get; set; }
