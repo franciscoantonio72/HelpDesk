@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HelpDesk2.Models.Os>
+﻿@model IEnumerable<HelpDesk2.Models.Relatorio.AtendimentoTecnico>
 @using Microsoft.AspNet.Identity
 
 @{
@@ -28,11 +28,8 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Os</th>
-                            <th>Nome Cliente</th>
-                            <th>Descricao</th>
-                            <th>Data Abertura</th>
-                            <th>Hora Abertura</th>
+                            <th>Cliente</th>
+                            <th>Quantidade</th>
                         </tr>
                     </thead>
 
@@ -41,28 +38,10 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Id)
+                                    @Html.DisplayFor(modelItem => item.NomeCliente.Nome)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Cliente.Nome)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Descricao)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Data)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.HoraAbertura)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DataFechamento)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.HoraFechamento)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Tempo)
+                                    @Html.DisplayFor(modelItem => item.Contador)
                                 </td>
                             </tr>
                         }

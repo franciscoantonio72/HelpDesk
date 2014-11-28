@@ -23,6 +23,7 @@ namespace HelpDesk2.Models
         public string Descricao { get; set; }
         public string UserId { get; set; }
         public string Usuario { get; set; }
+        public int ServicoId { get; set; }
         public virtual Cliente Cliente { get; set; }
         [Required(ErrorMessage = "Informe um Cliente")]
         public int ClienteId { get; set; }

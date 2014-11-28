@@ -34,23 +34,23 @@
         </div>
         <div class="row">
             <div class="form-group col-lg-6 col-md-6">
-                @Html.LabelFor(model => model.Data, new { @class = "form-label" })
-                @Html.EditorFor(model => model.Data, new { @class = "form-control", @readonly = "false" })
-                <p>@Html.ValidationMessageFor(model => model.Data)</p>
-            </div>
-
-            <div class="form-group col-lg-6 col-md-6">
                 @Html.LabelFor(model => model.UserId, "Usuario", new { @class = "form-label" })
                 @Html.DropDownListFor(model => model.UserId, (IEnumerable<SelectListItem>)ViewBag.UsersId, new { @class = "form-control" })
                 <p>@Html.ValidationMessageFor(model => model.UserId)</p>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-lg-12 col-md-12">
+            <div class="form-group col-lg-6 col-md-6">
                 @Html.LabelFor(model => model.StatusId, "Status", new { @class = "form-label" })
                 @Html.DropDownListFor(model => model.StatusId, (IEnumerable<SelectListItem>)ViewBag.StatusId, new { @class = "form-control" })
                 <p>@Html.ValidationMessageFor(model => model.StatusId)</p>
             </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-6 col-md-6">
+                @Html.LabelFor(model => model.ServicoId, "Servico", new { @class = "form-label" })
+                @Html.DropDownListFor(model => model.ServicoId, (IEnumerable<SelectListItem>)ViewBag.ServicosId, new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.ServicoId)</p>
+            </div>
+            <div></div>
         </div>
         <div class="row">
             <div class="form-group col-lg-12 col-md-12">
@@ -65,7 +65,7 @@
         </div>
         <div class="row">
             <div class="form-group col-lg-12 col-md-12">
-                <table id="tabela" class="table table-striped" >
+                <table id="" class="table table-striped">
                     <thead>
                         <tr>
                             <th>Operador</th>

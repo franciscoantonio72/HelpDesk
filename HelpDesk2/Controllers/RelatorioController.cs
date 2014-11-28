@@ -37,8 +37,21 @@ namespace HelpDesk2.Controllers
 
         public ActionResult RelatorioAtendimentoPendente()
         {
-            var os = db.Os.Where(r => r.StatusId != 2).ToList();
-            return View(os);
+            //var os = db.Os.Where(r => r.StatusId != 2).ToList();
+            var listaOs = from os in db.Os
+                          where os.StatusId == 2
+                          group os by os.Cliente into g
+                          select new AtendimentoTecnico { NomeCliente = g.Key, Contador = g.Count(), ListaOs = g.ToList() };
+
+            return View(listaOs);
+        }
+
+        public ActionResult RelatorioTipoServicos()
+        {
+            //var listaOs = from os in db.Os
+            //              join tipoServico in os.Servicos equals 
+            //              group os by os.ServicoId
+            return View();
         }
     }
 }

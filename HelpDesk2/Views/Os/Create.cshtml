@@ -45,14 +45,22 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-lg-12 col-md-12">
-                @Html.LabelFor(model => model.MsgNota, "Nota", new { @class = "form-label" })
-                @Html.TextAreaFor(model => model.MsgNota, 5, 100, new { @class = "form-control textareanota" })
-            </div>  
+            <div class="form-group col-lg-6 col-md-6">
+                @Html.LabelFor(model => model.ServicoId, "Servico", new { @class = "form-label" })
+                @Html.DropDownListFor(model => model.ServicoId, (IEnumerable<SelectListItem>)ViewBag.ServicosId, new { @class = "form-control" })
+                <p>@Html.ValidationMessageFor(model => model.ServicoId)</p>
+            </div>
+            <div></div>
         </div>
         <div class="row">
             <div class="form-group col-lg-12 col-md-12">
-                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                @Html.LabelFor(model => model.MsgNota, "Nota", new { @class = "form-label" })
+                @Html.TextAreaFor(model => model.MsgNota, 5, 100, new { @class = "form-control textareanota" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-12 col-md-12">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </div>
     </fieldset>

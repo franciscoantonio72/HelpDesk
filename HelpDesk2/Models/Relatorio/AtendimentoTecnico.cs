@@ -11,5 +11,6 @@ namespace HelpDesk2.Models.Relatorio
         public int Contador { get; set; }
         public string NomeUsuario { get; set; }
         public List<Os> ListaOs { get; set; }
+        public Cliente NomeCliente { get; set; }
     }
 }

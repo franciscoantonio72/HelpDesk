@@ -16,17 +16,9 @@ namespace HelpDesk2.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: /Os/
-        public ActionResult Index(int? page)
+        public ActionResult Index()
         {
             //var os = db.Os.Include(o => o.Cliente).Include(o => o.Status).Include(o => o.Tecnico);
-            if (Request.HttpMethod != "GET")
-            {
-                page = 1;
-            }
-
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
-
             IEnumerable<Os> listaOs;
             if (UsuarioSessao().Niveis == 0)
             {
@@ -37,7 +29,7 @@ namespace HelpDesk2.Controllers
                 listaOs = db.Os.ToList().Where(dado => dado.UserId == UsuarioSessao().Id);
             }
             
-            return View(listaOs.ToPagedList(pageNumber, pageSize));
+            return View(listaOs);
         }
 
         //[HttpPost]
@@ -109,6 +101,7 @@ namespace HelpDesk2.Controllers
             ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nome");
             ViewBag.StatusId = new SelectList(db.Status, "Id", "Descricao");
             ViewBag.TecnicoId = new SelectList(db.Tecnicoes, "Id", "Nome");
+            ViewBag.ServicosId = new SelectList(db.Servicoes, "Id", "Nome");
             var usuarios = db.Users.ToList();
             ViewBag.UsersId = new SelectList(usuarios, "Id", "UserName");
             return View();
@@ -143,6 +136,7 @@ namespace HelpDesk2.Controllers
             ViewBag.StatusId = new SelectList(db.Status, "Id", "Descricao", os.StatusId);
             var usuarios = db.Users.ToList();
             ViewBag.UsersId = new SelectList(usuarios, "Id", "UserName");
+            ViewBag.ServicosId = new SelectList(db.Servicoes, "Id", "Nome");
 
             return View(os);
         }
@@ -162,6 +156,7 @@ namespace HelpDesk2.Controllers
             os.MsgNota = "";
             ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nome", os.ClienteId);
             ViewBag.StatusId = new SelectList(db.Status, "Id", "Descricao", os.StatusId);
+            ViewBag.ServicosId = new SelectList(db.Servicoes, "Id", "Nome");
             var usuarios = db.Users.ToList();
             ViewBag.UsersId = new SelectList(usuarios, "Id", "UserName");
             var lista = db.Nota.Where(l => l.OsId == os.Id).ToList();
@@ -195,6 +190,7 @@ namespace HelpDesk2.Controllers
             ViewBag.StatusId = new SelectList(db.Status, "Id", "Descricao", os.StatusId);
             var usuarios = db.Users.ToList();
             ViewBag.UsersId = new SelectList(usuarios, "Id", "UserName");
+            ViewBag.ServicosId = new SelectList(db.Servicoes, "Id", "Nome");
 
             return View(os);
         }
